@@ -1,0 +1,231 @@
+[
+  {
+    "fullName": "Test User",
+    "phoneNumber": "9811111111",
+    "emailAddress": "test@example.com",
+    "exactLocation": "Chitwan",
+    "productName": "Bobin Foto Product",
+    "quantity": 1,
+    "pricePerPiece": 999,
+    "totalPrice": 999,
+    "orderId": "BFP-23082026-HNH1N",
+    "dateTime": "23 Aug 2026, 09:57",
+    "paymentMethod": "Cash On Delivery",
+    "orderStatus": "New Order",
+    "notes": "",
+    "deliveryFee": 0,
+    "syncWarnings": [
+      "request to https://www.googleapis.com/oauth2/v4/token failed, reason: ",
+      "queryA ETIMEOUT smtp.gmail.com",
+      "queryA ETIMEOUT smtp.gmail.com"
+    ]
+  },
+  {
+    "fullName": "badri dhital",
+    "phoneNumber": "9851107092",
+    "emailAddress": "badridtl1998@gmail.com",
+    "exactLocation": "bharatpur, chitwan, nepal",
+    "productName": "Bobin Foto Product",
+    "quantity": 2,
+    "pricePerPiece": 999,
+    "totalPrice": 1998,
+    "orderId": "BFP-23082026-2ZB4C",
+    "dateTime": "23 Aug 2026, 10:06",
+    "paymentMethod": "Cash On Delivery",
+    "orderStatus": "New Order",
+    "notes": "",
+    "deliveryFee": 0,
+    "syncWarnings": [
+      "request to https://www.googleapis.com/oauth2/v4/token failed, reason: ",
+      "queryA ETIMEOUT smtp.gmail.com",
+      "queryA ETIMEOUT smtp.gmail.com"
+    ]
+  },
+  {
+    "fullName": "Rupa Dhakal",
+    "phoneNumber": "9845663082",
+    "emailAddress": "dhakalrupa15@gmail.com",
+    "exactLocation": "chitwan, nepal",
+    "productName": "Bobin Foto Product",
+    "quantity": 1,
+    "pricePerPiece": 999,
+    "totalPrice": 999,
+    "orderId": "BFP-27082026-ZPNLT",
+    "dateTime": "27 Aug 2026, 13:00",
+    "paymentMethod": "Cash On Delivery",
+    "orderStatus": "New Order",
+    "notes": "",
+    "deliveryFee": 0,
+    "syncWarnings": [
+      "request to https://www.googleapis.com/oauth2/v4/token failed, reason: ",
+      "queryA ETIMEOUT smtp.gmail.com",
+      "queryA ETIMEOUT smtp.gmail.com"
+    ]
+  },
+  {
+    "fullName": "raju dhital",
+    "phoneNumber": "9845883817",
+    "emailAddress": "rajudhital1980@gmail.com",
+    "exactLocation": "Kathmandu, nepal",
+    "productName": "Bobin Foto Product",
+    "quantity": 2,
+    "pricePerPiece": 999,
+    "totalPrice": 2168,
+    "orderId": "BFP-27082026-9JLO1",
+    "dateTime": "27 Aug 2026, 13:50",
+    "paymentMethod": "Cash On Delivery",
+    "orderStatus": "New Order",
+    "notes": "",
+    "deliveryFee": 170,
+    "syncWarnings": [
+      "request to https://www.googleapis.com/oauth2/v4/token failed, reason: ",
+      "queryA ETIMEOUT smtp.gmail.com",
+      "queryA ETIMEOUT smtp.gmail.com"
+    ]
+  },
+  {
+    "fullName": "Riwansi Dhital",
+    "phoneNumber": "9815200933",
+    "emailAddress": "badridtl1998@gmail.com",
+    "exactLocation": "Nawalparasi, nepal",
+    "productName": "Bobin Foto Product",
+    "quantity": 5,
+    "pricePerPiece": 999,
+    "totalPrice": 5165,
+    "orderId": "BFP-27082026-UUE07",
+    "dateTime": "27 Aug 2026, 14:09",
+    "paymentMethod": "Cash On Delivery",
+    "orderStatus": "New Order",
+    "notes": "",
+    "deliveryFee": 170,
+    "syncWarnings": [
+      "request to https://www.googleapis.com/oauth2/v4/token failed, reason: ",
+      "queryA ETIMEOUT smtp.gmail.com",
+      "queryA ETIMEOUT smtp.gmail.com"
+    ]
+  },
+  {
+    "fullName": "badri dhital",
+    "phoneNumber": "9851107092",
+    "emailAddress": "badridtl2055@gmail.com",
+    "exactLocation": "Kathmandu, nepal",
+    "productName": "Bobin Foto Product",
+    "quantity": 2,
+    "pricePerPiece": 999,
+    "totalPrice": 2168,
+    "orderId": "BFP-27082026-G55KM",
+    "dateTime": "27 Aug 2026, 14:15",
+    "paymentMethod": "Cash On Delivery",
+    "orderStatus": "New Order",
+    "notes": "",
+    "deliveryFee": 170,
+    "syncWarnings": [
+      "request to https://www.googleapis.com/oauth2/v4/token failed, reason: ",
+      "queryA ETIMEOUT smtp.gmail.com",
+      "queryA ETIMEOUT smtp.gmail.com"
+    ]
+  },
+  {
+    "fullName": "hare kerishna hare krishna krishna krishna hare hare",
+    "phoneNumber": "9814978028",
+    "emailAddress": "kalpnadhital1980@gmail.com",
+    "exactLocation": "Pokhara, nepal",
+    "productName": "Bobin Foto Product",
+    "quantity": 2,
+    "pricePerPiece": 999,
+    "totalPrice": 2168,
+    "orderId": "BFP-27082026-CJVNW",
+    "dateTime": "27 Aug 2026, 15:04",
+    "paymentMethod": "Cash On Delivery",
+    "orderStatus": "New Order",
+    "notes": "",
+    "deliveryFee": 170,
+    "syncWarnings": [
+      "request to https://www.googleapis.com/oauth2/v4/token failed, reason: ",
+      "queryA ETIMEOUT smtp.gmail.com",
+      "queryA ETIMEOUT smtp.gmail.com"
+    ]
+  },
+  {
+    "fullName": "riwans dhital",
+    "phoneNumber": "9845735701",
+    "emailAddress": "dhakalrupa15@gmail.com",
+    "exactLocation": "Pokhara, nepal",
+    "productName": "Bobin Foto Product",
+    "quantity": 1,
+    "pricePerPiece": 999,
+    "totalPrice": 1169,
+    "orderId": "BFP-27082026-1VT69",
+    "dateTime": "27 Aug 2026, 16:42",
+    "paymentMethod": "Cash On Delivery",
+    "orderStatus": "New Order",
+    "notes": "",
+    "deliveryFee": 170,
+    "syncWarnings": [
+      "request to https://www.googleapis.com/oauth2/v4/token failed, reason: ",
+      "queryA ETIMEOUT smtp.gmail.com",
+      "queryA ETIMEOUT smtp.gmail.com"
+    ]
+  },
+  {
+    "fullName": "ranjana lamichhane",
+    "phoneNumber": "9845735701",
+    "emailAddress": "lamichhaneranjana2056@gmail.com",
+    "exactLocation": "pokhara, nepal",
+    "productName": "Bobin Foto Product",
+    "quantity": 2,
+    "pricePerPiece": 999,
+    "totalPrice": 2168,
+    "orderId": "BFP-27082026-F1S43",
+    "dateTime": "27 Aug 2026, 18:07",
+    "paymentMethod": "Cash On Delivery",
+    "orderStatus": "New Order",
+    "notes": "",
+    "deliveryFee": 170,
+    "syncWarnings": [
+      "request to https://www.googleapis.com/oauth2/v4/token failed, reason: ",
+      "queryA ETIMEOUT smtp.gmail.com",
+      "queryA ETIMEOUT smtp.gmail.com"
+    ]
+  },
+  {
+    "fullName": "Test Customer",
+    "phoneNumber": "9800000000",
+    "emailAddress": "testcustomer@example.com",
+    "exactLocation": "Bharatpur, Chitwan",
+    "productName": "Bobin Foto Product",
+    "quantity": 1,
+    "pricePerPiece": 999,
+    "totalPrice": 999,
+    "orderId": "BFP-28082026-K674O",
+    "dateTime": "28 Aug 2026, 12:34",
+    "paymentMethod": "Cash On Delivery",
+    "orderStatus": "New Order",
+    "notes": "",
+    "deliveryFee": 0,
+    "syncWarnings": [
+      "Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-142e0dc898dsm3110621c88.9 - gsmtp",
+      "Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3286f784845sm3008500eec.2 - gsmtp"
+    ]
+  },
+  {
+    "fullName": "badri dhital",
+    "phoneNumber": "9865513959",
+    "emailAddress": "badridtl2055@gmail.com",
+    "exactLocation": "chitwan, nepal",
+    "productName": "Bobin Foto Product",
+    "quantity": 2,
+    "pricePerPiece": 999,
+    "totalPrice": 1998,
+    "orderId": "BFP-28082026-LMGEZ",
+    "dateTime": "28 Aug 2026, 13:01",
+    "paymentMethod": "Cash On Delivery",
+    "orderStatus": "New Order",
+    "notes": "",
+    "deliveryFee": 0,
+    "syncWarnings": [
+      "Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-142e0d4b336sm3560938c88.8 - gsmtp",
+      "Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3286f9e2a95sm2591471eec.23 - gsmtp"
+    ]
+  }
+]

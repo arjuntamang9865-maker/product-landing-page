@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.92), rgba(248, 241, 232, 0.92) 32%, rgba(239, 224, 207, 0.98) 100%),
+    linear-gradient(180deg, #f8f1e8 0%, #f2e4d3 100%);
+  color: #2b1d18;
+  font-family: var(--font-body), 'Segoe UI', Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(140, 75, 56, 0.18);
+}
