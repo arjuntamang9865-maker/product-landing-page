@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { CheckoutForm } from '@/components/checkout-form'
 import { SectionHeading } from '@/components/section-heading'
 import { formatNpr, siteConfig } from '@/lib/site'
@@ -25,7 +26,20 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        <CheckoutForm />
+        <Suspense
+          fallback={
+            <div className="rounded-[32px] border border-[#ead3be] bg-white/95 p-6 shadow-glow sm:p-8">
+              <div className="h-6 w-40 animate-pulse rounded-full bg-[#f1dfcf]" />
+              <div className="mt-5 space-y-4">
+                <div className="h-12 animate-pulse rounded-2xl bg-[#f7efe7]" />
+                <div className="h-12 animate-pulse rounded-2xl bg-[#f7efe7]" />
+                <div className="h-24 animate-pulse rounded-2xl bg-[#f7efe7]" />
+              </div>
+            </div>
+          }
+        >
+          <CheckoutForm />
+        </Suspense>
       </div>
     </main>
   )

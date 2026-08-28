@@ -105,7 +105,7 @@ export function OrderSyncStatus({
           if (shouldShowError) {
             setVariant('error')
             setMessage('We received a problem while processing your order.')
-            setDetails(firstWarning || retryData.message || 'The order was saved, but external delivery is still pending.')
+            setDetails(firstWarning || 'The order was saved, but external delivery is still pending.')
             return
           }
         }

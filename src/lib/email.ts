@@ -31,14 +31,10 @@ function createTransporter(port: number) {
     host: smtpHost,
     port,
     secure: port === 465,
-    requireTLS: port === 587,
     auth: {
       user: smtpUser,
       pass: smtpPass
-    },
-    connectionTimeout: 15000,
-    greetingTimeout: 15000,
-    socketTimeout: 15000
+    }
   })
 }
 
