@@ -12,9 +12,17 @@ type StoredOrder = OrderRecord & {
 const dataDir = path.join(process.cwd(), 'data')
 const ordersFile = path.join(dataDir, 'orders.json')
 const pendingFile = path.join(dataDir, 'pending-orders.json')
+const memoryStore = {
+  orders: [] as StoredOrder[],
+  pending: [] as Array<OrderRecord & { syncWarnings: string[] }>
+}
 
 async function ensureDataDir() {
-  await mkdir(dataDir, { recursive: true })
+  try {
+    await mkdir(dataDir, { recursive: true })
+  } catch {
+    // Some deployment environments do not allow writing to the repo filesystem.
+  }
 }
 
 async function readJsonFile<T>(filePath: string, fallback: T) {
@@ -27,12 +35,16 @@ async function readJsonFile<T>(filePath: string, fallback: T) {
 }
 
 async function writeJsonFile(filePath: string, value: unknown) {
-  await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8')
+  try {
+    await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8')
+  } catch {
+    // Fall back to in-memory storage when the runtime filesystem is read-only.
+  }
 }
 
 export async function appendStoredOrder(order: StoredOrder) {
   await ensureDataDir()
-  const orders = await readJsonFile<StoredOrder[]>(ordersFile, [])
+  const orders = (await readJsonFile<StoredOrder[]>(ordersFile, memoryStore.orders)) || memoryStore.orders
   const index = orders.findIndex((item) => item.orderId === order.orderId)
 
   if (index >= 0) {
@@ -41,18 +53,21 @@ export async function appendStoredOrder(order: StoredOrder) {
     orders.push(order)
   }
 
+  memoryStore.orders = orders
   await writeJsonFile(ordersFile, orders)
 }
 
 export async function getStoredOrder(orderId: string) {
   await ensureDataDir()
-  const orders = await readJsonFile<StoredOrder[]>(ordersFile, [])
+  const orders = (await readJsonFile<StoredOrder[]>(ordersFile, memoryStore.orders)) || memoryStore.orders
   return orders.find((item) => item.orderId === orderId)
 }
 
 export async function queuePendingOrder(order: OrderRecord, syncWarnings: string[]) {
   await ensureDataDir()
-  const pendingOrders = await readJsonFile<Array<OrderRecord & { syncWarnings: string[] }>>(pendingFile, [])
+  const pendingOrders =
+    (await readJsonFile<Array<OrderRecord & { syncWarnings: string[] }>>(pendingFile, memoryStore.pending)) ||
+    memoryStore.pending
   const existingIndex = pendingOrders.findIndex((item) => item.orderId === order.orderId)
   const pendingEntry = {
     ...order,
@@ -64,17 +79,20 @@ export async function queuePendingOrder(order: OrderRecord, syncWarnings: string
   } else {
     pendingOrders.push(pendingEntry)
   }
+  memoryStore.pending = pendingOrders
   await writeJsonFile(pendingFile, pendingOrders)
 }
 
 export async function getPendingOrders() {
   await ensureDataDir()
-  return readJsonFile<Array<OrderRecord & { syncWarnings: string[] }>>(pendingFile, [])
+  return (await readJsonFile<Array<OrderRecord & { syncWarnings: string[] }>>(pendingFile, memoryStore.pending)) || memoryStore.pending
 }
 
 export async function getPendingOrder(orderId: string) {
   await ensureDataDir()
-  const pendingOrders = await readJsonFile<Array<OrderRecord & { syncWarnings: string[] }>>(pendingFile, [])
+  const pendingOrders =
+    (await readJsonFile<Array<OrderRecord & { syncWarnings: string[] }>>(pendingFile, memoryStore.pending)) ||
+    memoryStore.pending
   return pendingOrders.find((item) => item.orderId === orderId)
 }
 
@@ -82,6 +100,7 @@ export async function replacePendingOrders(
   pendingOrders: Array<OrderRecord & { syncWarnings: string[] }>
 ) {
   await ensureDataDir()
+  memoryStore.pending = pendingOrders
   await writeJsonFile(pendingFile, pendingOrders)
 }
 
@@ -91,7 +110,7 @@ export async function updateStoredOrderStatus(
   syncWarnings: string[]
 ) {
   await ensureDataDir()
-  const orders = await readJsonFile<StoredOrder[]>(ordersFile, [])
+  const orders = (await readJsonFile<StoredOrder[]>(ordersFile, memoryStore.orders)) || memoryStore.orders
   const index = orders.findIndex((item) => item.orderId === orderId)
 
   if (index >= 0) {
@@ -100,13 +119,17 @@ export async function updateStoredOrderStatus(
       syncStatus,
       syncWarnings
     }
+    memoryStore.orders = orders
     await writeJsonFile(ordersFile, orders)
   }
 }
 
 export async function removePendingOrder(orderId: string) {
   await ensureDataDir()
-  const pendingOrders = await readJsonFile<Array<OrderRecord & { syncWarnings: string[] }>>(pendingFile, [])
+  const pendingOrders =
+    (await readJsonFile<Array<OrderRecord & { syncWarnings: string[] }>>(pendingFile, memoryStore.pending)) ||
+    memoryStore.pending
   const remaining = pendingOrders.filter((item) => item.orderId !== orderId)
+  memoryStore.pending = remaining
   await writeJsonFile(pendingFile, remaining)
 }
