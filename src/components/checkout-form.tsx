@@ -69,7 +69,7 @@ export function CheckoutForm() {
         })
       })
 
-      const data = (await response.json()) as {
+      const data = (await readJson(response)) as {
         success?: boolean
         accepted?: boolean
         message?: string
@@ -167,6 +167,20 @@ export function CheckoutForm() {
       </button>
     </form>
   )
+}
+
+async function readJson(response: Response) {
+  const text = await response.text()
+
+  if (!text.trim()) {
+    return {}
+  }
+
+  try {
+    return JSON.parse(text)
+  } catch {
+    return { message: text }
+  }
 }
 
 function Field({

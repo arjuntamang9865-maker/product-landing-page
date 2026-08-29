@@ -25,6 +25,36 @@ function getPrivateKey() {
   return trimmed.replace(/\\n/g, '\n')
 }
 
+function getServiceAccountCredentials() {
+  const rawJson =
+    process.env.GOOGLE_SERVICE_ACCOUNT_JSON ||
+    process.env.GOOGLE_CREDENTIALS_JSON ||
+    process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON
+
+  if (!rawJson) {
+    return {
+      email: process.env.GOOGLE_CLIENT_EMAIL || process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      privateKey: getPrivateKey()
+    }
+  }
+
+  try {
+    const parsed = JSON.parse(rawJson.trim().replace(/^"(.*)"$/s, '$1').replace(/^'(.*)'$/s, '$1'))
+    const email = typeof parsed.client_email === 'string' ? parsed.client_email : undefined
+    const privateKey = typeof parsed.private_key === 'string' ? parsed.private_key.replace(/\\n/g, '\n') : undefined
+
+    return {
+      email: email || process.env.GOOGLE_CLIENT_EMAIL || process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      privateKey: privateKey || getPrivateKey()
+    }
+  } catch {
+    return {
+      email: process.env.GOOGLE_CLIENT_EMAIL || process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      privateKey: getPrivateKey()
+    }
+  }
+}
+
 function normalizeSheetName(name: string) {
   const escaped = name.replace(/'/g, "''")
   return `'${escaped}'`
@@ -184,8 +214,7 @@ async function withRetry<T>(operation: () => Promise<T>, attempts = 3, delayMs =
 
 export async function appendOrderToSheet(order: OrderRecord) {
   const sheetId = process.env.GOOGLE_SHEET_ID
-  const serviceAccountEmail = process.env.GOOGLE_CLIENT_EMAIL || process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
-  const privateKey = getPrivateKey()
+  const { email: serviceAccountEmail, privateKey } = getServiceAccountCredentials()
   const tabName = process.env.GOOGLE_SHEET_TAB_NAME || 'Sheet 1'
 
   if (!sheetId || !serviceAccountEmail || !privateKey) {

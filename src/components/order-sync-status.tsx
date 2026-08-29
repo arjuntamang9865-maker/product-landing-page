@@ -52,7 +52,7 @@ export function OrderSyncStatus({
         const response = await fetch(`/api/order/status?orderId=${encodeURIComponent(orderId)}`, {
           cache: 'no-store'
         })
-        const data = (await response.json()) as SyncStatusResponse
+        const data = (await readJson(response)) as SyncStatusResponse
 
         if (cancelled) return
 
@@ -82,7 +82,7 @@ export function OrderSyncStatus({
             },
             body: JSON.stringify({ orderId })
           })
-          const retryData = (await retryResponse.json()) as {
+          const retryData = (await readJson(retryResponse)) as {
             success: boolean
             results?: Array<{ orderId: string; synced: boolean; warnings: string[] }>
           }
@@ -150,4 +150,18 @@ export function OrderSyncStatus({
       ) : null}
     </div>
   )
+}
+
+async function readJson(response: Response) {
+  const text = await response.text()
+
+  if (!text.trim()) {
+    return {}
+  }
+
+  try {
+    return JSON.parse(text)
+  } catch {
+    return { success: false, message: text }
+  }
 }
