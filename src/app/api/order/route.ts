@@ -15,8 +15,8 @@ export const dynamic = 'force-dynamic'
 
 export async function POST(request: Request) {
   const origin = request.headers.get('origin')
-  const allowedOrigin = process.env.FRONTEND_URL
-  if (origin && allowedOrigin && !isAllowedOrigin(origin, allowedOrigin)) {
+  const allowedOrigins = getAllowedOrigins()
+  if (origin && allowedOrigins.length > 0 && !allowedOrigins.some((allowedOrigin) => isAllowedOrigin(origin, allowedOrigin))) {
     return NextResponse.json({ success: false, message: 'Origin not allowed.' }, { status: 403 })
   }
 
@@ -170,4 +170,21 @@ function isAllowedOrigin(requestOrigin: string, configuredOrigin: string) {
   } catch {
     return false
   }
+}
+
+function getAllowedOrigins() {
+  const values = [
+    process.env.FRONTEND_URL,
+    process.env.NEXT_PUBLIC_SITE_URL,
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined
+  ]
+
+  return Array.from(
+    new Set(
+      values
+        .flatMap((value) => (value ? value.split(',') : []))
+        .map((value) => value.trim())
+        .filter(Boolean)
+    )
+  )
 }
